@@ -113,7 +113,7 @@ This project is licensed under the MIT License.
 You are free to use, modify, and distribute it.
 
 ## 🌐 Live App
-👉 [Try the QA Chatbot]([https://lawbandit-question-answering-chatbo.vercel.app/](https://lawbandit-question-answering-madhumitha-somasundarams-projects.vercel.app/))
+👉 [Try the QA Chatbot]((https://lawbandit-question-answering-madhumitha-somasundarams-projects.vercel.app/))
 
 ## 👤 Creator
 Madhumitha Somasundaram  
