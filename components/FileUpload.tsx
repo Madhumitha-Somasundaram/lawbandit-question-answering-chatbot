@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import "./FileUpload.css";
 
 export default function FileUpload({ onUploadComplete }: { onUploadComplete: () => void }) {
   const [loading, setLoading] = useState(false);
@@ -21,17 +22,11 @@ export default function FileUpload({ onUploadComplete }: { onUploadComplete: () 
 
     try {
       const res = await fetch("/api/upload", { method: "POST", body: formData });
-      console.log("Backend response:", res);
-      if (res.ok) {
-        const data = await res.json();
-        console.log("Backend response:", data);
+      const data = await res.json();
 
-        if (data?.success) {
-          setUploaded(true);
-          onUploadComplete();
-        } else {
-          setError("Upload failed. Please try again.");
-        }
+      if (res.ok && data?.success) {
+        setUploaded(true);
+        onUploadComplete();
       } else {
         setError("Upload failed. Please try again.");
       }
@@ -46,35 +41,19 @@ export default function FileUpload({ onUploadComplete }: { onUploadComplete: () 
   if (uploaded) return null;
 
   return (
-    <div className="p-4 border rounded relative max-w-md mx-auto mt-6">
-      <h1 className="text-2xl font-bold text-center text-blue-700 mb-4">
-        LawBandit QA ChatBot
-      </h1>
+    <div className="upload-container">
+      <div className="upload-card">
+        <h1>LawBandit QA ChatBot</h1>
+        <form onSubmit={handleUpload} className="upload-form">
+          <input type="file" name="files" multiple accept="application/pdf" disabled={loading} />
+          <button type="submit" disabled={loading}>
+            {loading ? "Uploading..." : "Upload PDFs"}
+          </button>
+          {error && <p className="error">{error}</p>}
+        </form>
 
-      <form onSubmit={handleUpload} className="flex flex-col items-center">
-        <input
-          type="file"
-          name="files"
-          multiple
-          accept="application/pdf"
-          className={`mb-2 w-full ${error ? "border border-red-500" : ""}`}
-          disabled={loading}
-        />
-        <button
-          type="submit"
-          className={`w-full px-4 py-2 rounded text-white ${loading ? "bg-gray-400" : "bg-blue-600"}`}
-          disabled={loading}
-        >
-          {loading ? "Uploading..." : "Upload PDFs"}
-        </button>
-        {error && <p className="text-red-600 mt-2 font-medium">{error}</p>}
-      </form>
-
-      {loading && (
-        <div className="absolute inset-0 flex items-center justify-center bg-white bg-opacity-50">
-          <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-blue-600"></div>
-        </div>
-      )}
+        {loading && <div className="loading-overlay"><div className="spinner"></div></div>}
+      </div>
     </div>
   );
 }

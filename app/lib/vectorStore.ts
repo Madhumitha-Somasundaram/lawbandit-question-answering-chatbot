@@ -37,4 +37,3 @@ export async function getUniquePDFs(){
 
   return Array.from(new Set(results.matches.map((m) => m.metadata.fileName)));
 }
-

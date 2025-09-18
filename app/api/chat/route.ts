@@ -8,7 +8,6 @@ import { llm, getUniquePDFs } from "../../lib/vectorStore"; // ✅ include getUn
 
 // -------------------- Build Graph --------------------
 
-// Cast tools as any to avoid deep TS recursion
 const toolsNode = new ToolNode([retrieve, summarize] as any);
 const uniquePDFs=await getUniquePDFs()
 
@@ -100,7 +99,7 @@ export async function POST(req: NextRequest) {
     if (!question || typeof question !== "string") {
       return NextResponse.json({ error: "Invalid question" }, { status: 400 });
     }
-    console.log("uniquePDFs : ",uniquePDFs)
+    console.log(uniquePDFs)
     const systemMsg = new SystemMessage(
       `You have access to PDFs with IDs: ${uniquePDFs.join(
         ", "
@@ -116,7 +115,7 @@ export async function POST(req: NextRequest) {
     const answerMessage = output.messages.filter(
       (msg) => msg instanceof AIMessage && msg.content
     ).pop();
-    
+    console.log(answerMessage)
     return NextResponse.json({
       answer: answerMessage?.content || "I don’t know.",
     });
