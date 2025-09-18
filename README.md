@@ -21,7 +21,7 @@ This AI-powered system helps users ask questions on legal documents (PDFs) effic
 
 | Component             | Tools/Frameworks                           |
 |----------------------|--------------------------------------------|
-| **Frontend**         | TypeScript, React / Next.js (.tsx)                                 |
+| **Frontend**         | TypeScript, React / Next.js (.tsx) / CSS (.css)                                |
 | **Backend**          | TypeScript, Node.js / Next.js API (.ts), LangGraph                          |
 | **AI & Retrieval** | RAG, LangChain, LangGraph, Pinecone                            |
 | **Deployment**       | Vercel                            |
@@ -31,13 +31,17 @@ This AI-powered system helps users ask questions on legal documents (PDFs) effic
 
 | Component             | Note                          |
 |----------------------|--------------------------------------------|
-| **FileUpload.tsx**         | Upload multiple files for processing.                                 |
-| **upload/route.ts**         | API endpoint handling file uploads.                                 |
-| **vectorStore.ts**         | Store & retrieve document embeddings.                                 |
-| **pinecone.ts**         | Pinecone client setup for vector DB.                                 |
-| **ChatBox.tsx**         | Interactive chat interface.                                 |
-| **chat/route.ts**         | Backend chat logic with retrieval & LLM.                                 |
-| **tools.ts / utils.ts**         | Helper functions for parsing, cleaning, OpenAI embeddings.                                 |
+| **components/FileUpload.tsx**         | Upload multiple files for processing.                                 |
+| **components/FileUpload.css**         | CSS file for upload page.                                 |
+| **components/ChatBox.tsx**         | Interactive chat interface.                                 |
+| **components/ChatBox.css**         | CSS file chat interface.                                 |
+| **app/api/upload/route.ts**         | API endpoint handling file uploads.                                 |
+| **app/api/chat/route.ts**         | Backend chat logic with retrieval & LLM.                                 |
+| **app/lib/vectorStore.ts**         | Store & retrieve document embeddings.                                 |
+| **app/lib/tools.ts**         | Retrieval and Summarization tools.        |
+| **lib/pinecone.ts**         | Pinecone client setup for vector DB.                                 |
+| **lib/utils.ts**         | Helper functions for cleaning the pdf file.                                 |
+
 
 ---
 ## 🚀 Setup Instructions
@@ -109,7 +113,7 @@ This project is licensed under the MIT License.
 You are free to use, modify, and distribute it.
 
 ## 🌐 Live App
-👉 [Try the QA Chatbot](https://lawbandit-question-answering-chatbo.vercel.app/)
+👉 [Try the QA Chatbot]([https://lawbandit-question-answering-chatbo.vercel.app/](https://lawbandit-question-answering-madhumitha-somasundarams-projects.vercel.app/))
 
 ## 👤 Creator
 Madhumitha Somasundaram  
